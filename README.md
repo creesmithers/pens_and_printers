@@ -10,9 +10,9 @@ Python, Pandas, Seaborn, scipy.stats, NumPy, PowerBI
 The dataset contains predictors such as week, sales_method, customer_id, number sold, revenue, years_as_customer, number site visits, and state
 
 ## Methods
-- Uncovered missing revenue data points and corrected through imputation of median values
-- Found customer_id fields to have no returning customers and recommended
-- Used one-way ANOVA testing to identify differences in revenue by customer contact methods
+- Missing data: Identified missing revenue values and imputed them using the median revenue within each sales_method group (rather than a single global median), since revenue varies substantially by contact method and a group-level median preserves that structure instead of flattening it.
+- Data quality check: Found no repeat customer_id values in the dataset. Flagged this for follow-up rather than treating it as ground truth — it's unclear whether this reflects genuinely one-time purchase behavior or a data entry/tracking issue upstream, and that ambiguity should be resolved before the finding is used to drive a business decision 
+- Statistical Testing: Ran a one-way ANOVA testing to identify differences in revenue by customer contact methods
 
 ## Results
 Found there to be a statistically significant difference in average revenue by contact method. Contact by combination of email + call was higher than just call or email. 
@@ -20,6 +20,10 @@ Calculated business metric of total Revenue per Customer by Sales Method:
 - Call: $47.65
 - Email: $97.01
 - Email + Call: $183.80
+
+- Found Email only clients account for 84% of week 1 revenue
+- Found 'Email + Call' strategy to account for 27% of revenue in week 3 but grew to 70% by last week
+  
 
 ## Files
 Product Sales (Pens and Printers).pptx   - Slide deck summarizing analysis, statistical findings, and business recommendations
